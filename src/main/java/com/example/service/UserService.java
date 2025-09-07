@@ -1,8 +1,8 @@
 package com.example.service;
 
-import com.example.repository.UserDao;
-import com.example.model.User;
 import com.example.dto.UserDto;
+import com.example.model.User;
+import com.example.repository.UserDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,7 +11,15 @@ import java.util.stream.Collectors;
 
 public class UserService {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
-    private final UserDao userDao = new UserDao();
+    private final UserDao userDao;
+
+    public UserService() {
+        this.userDao = new UserDao();
+    }
+
+    public UserService(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     // Создание пользователя
     public void createUser(String name, String email, int age) {
